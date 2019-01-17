@@ -19,6 +19,8 @@ Basic minerals can be mined and turned into coins - supported are
 * diamond coins (500 ac-)
 * mese coins (1000 ac-)
 
+Enable these by setting `anycoin.mineral_coins` to true in your preferences or `minetest.conf`
+
 ## API
 
 Very simple. Add a dependency to `anycoin` and user `anycoin:register_coin(name, coin_definition)` with a table as follows

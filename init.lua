@@ -1,4 +1,5 @@
 anycoin = {}
+local use_mineral_coins = minetest.settings:get_bool("anycoin.mineral_coins") == true
 
 local basemetal = "default:tin_ingot"
 
@@ -116,6 +117,11 @@ local coin_definitions = {
         face_image = "[colorize:purple:60",
         divides_into = "fivercoin",
     },
+}
+
+-- Some extra denominations
+
+local mineral_coins = {
     iron_coin = {
         description = "Iron Coin",
         material = "default:iron_ingot",
@@ -163,7 +169,15 @@ local coin_definitions = {
     },
 }
 
-for coinname,coindef in pairs(coin_definitions) do
-    register_coin(coinname, coindef)
-    register_coin_conversion(coindef.divides_into, coinname)
+local function process_definitions(def_table)
+    for coinname,coindef in pairs(def_table) do
+        register_coin(coinname, coindef)
+        register_coin_conversion(coindef.divides_into, coinname)
+    end
+end
+
+process_definitions(coin_definitions)
+
+if use_mineral_coins then
+    process_definitions(mineral_coins)
 end

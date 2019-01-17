@@ -1,0 +1,1 @@
+anycoin.mineral_coins (Use minerals as base for coins) bool true
